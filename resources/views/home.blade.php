@@ -15,10 +15,12 @@
     
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div class="text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tight">
+            <img src="{{ asset('logo/bjm.png') }}" alt="Logo" class="h-40 w-auto mx-auto mb-4">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-2 tracking-tight">
                 <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">SURVEY KEPUASAN</span>
                 <br>
-                <span class="text-white">MASYARAKAT</span>
+                <span class="text-white">MASYARAKAT</span><br>
+                <span class="text-white">kantor kelurahan kertak baru ulu</span>
             </h1>
             <p class="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-8">
                 Platform survei untuk mengukur dan meningkatkan kepuasan masyarakat terhadap layanan publik dengan hasil yang transparan dan akurat.
