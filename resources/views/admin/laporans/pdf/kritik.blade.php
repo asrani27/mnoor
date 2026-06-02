@@ -20,7 +20,6 @@
             margin-right:10px;   
         }
         .header {
-            text-align: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 2px solid #ca8a04;
@@ -92,9 +91,23 @@
 </head>
 <body>
     <div class="header">
-        <h2>Sistem Informasi Aplikasi Survei Kepuasan Masyarakat</h2>
-        <h1>KELURAHAN KERTAK BARU ULU</h1>
-        <p>Jl H. Anang Adenansi No 13 RT 2 RW 1</p>
+        <table>
+            <tr>
+                <td>
+                    <img src="{{ public_path('logo/bjm.png') }}" alt="Logo" style="height: 90px;">
+                </td>
+                <td>
+                    <div style="text-align: center;">
+                        <h2>Sistem Informasi Aplikasi Survei Kepuasan Masyarakat</h2>
+                        <h1>KELURAHAN KERTAK BARU ULU</h1>
+                        <p>Jl H. Anang Adenansi No 13 RT 2 RW 1</p>
+                    </div>
+                </td>
+                <td>
+                    <img src="" style="height: 90px;">
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div class="info-box">
