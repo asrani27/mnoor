@@ -48,7 +48,7 @@ class LaporanController extends Controller
 
         $pdf->setPaper('A4', 'landscape');
 
-        return $pdf->download('laporan-responden-' . date('Y-m-d') . '.pdf');
+        return $pdf->stream('laporan-responden-' . date('Y-m-d') . '.pdf');
     }
 
     public function exportJawaban(Request $request)
@@ -79,7 +79,7 @@ class LaporanController extends Controller
 
         $pdf->setPaper('A4', 'landscape');
 
-        return $pdf->download('laporan-jawaban-' . date('Y-m-d') . '.pdf');
+        return $pdf->stream('laporan-jawaban-' . date('Y-m-d') . '.pdf');
     }
 
     public function exportKritik(Request $request)
@@ -108,7 +108,7 @@ class LaporanController extends Controller
 
         $pdf->setPaper('A4', 'landscape');
 
-        return $pdf->download('laporan-kritik-' . date('Y-m-d') . '.pdf');
+        return $pdf->stream('laporan-kritik-' . date('Y-m-d') . '.pdf');
     }
 
     public function exportSummary(Request $request)
@@ -134,6 +134,6 @@ class LaporanController extends Controller
 
         $pdf->setPaper('A4', 'portrait');
 
-        return $pdf->download('laporan-summary-' . date('Y-m-d') . '.pdf');
+        return $pdf->stream('laporan-summary-' . date('Y-m-d') . '.pdf');
     }
 }
