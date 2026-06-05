@@ -72,14 +72,24 @@
                                         </div>
                                         <div id="edit-form-{{ $pertanyaan->id }}" class="hidden mt-4">
                                             <input type="hidden" name="pertanyaan_id[]" value="{{ $pertanyaan->id }}">
-                                            <div class="space-y-3">
-                                                <input type="text" name="jawaban[{{ $pertanyaan->id }}]" value="{{ $existingAnswer->jawaban }}" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Masukkan jawaban Anda">
+                                            <div class="flex flex-wrap gap-4">
+                                                @foreach(['Sangat Puas', 'Puas', 'Cukup Puas', 'Kurang', 'Sangat Kurang'] as $option)
+                                                    <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-indigo-50 transition-colors {{ $existingAnswer->jawaban == $option ? 'bg-indigo-100 border-indigo-300' : '' }}">
+                                                        <input type="radio" name="jawaban[{{ $pertanyaan->id }}]" value="{{ $option }}" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" {{ $existingAnswer->jawaban == $option ? 'checked' : '' }}>
+                                                        <span class="ml-2 text-sm text-gray-700">{{ $option }}</span>
+                                                    </label>
+                                                @endforeach
                                             </div>
                                         </div>
                                     @else
                                         <input type="hidden" name="pertanyaan_id[]" value="{{ $pertanyaan->id }}">
-                                        <div class="space-y-3">
-                                            <input type="text" name="jawaban[{{ $pertanyaan->id }}]" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Masukkan jawaban Anda" required>
+                                        <div class="flex flex-wrap gap-4">
+                                            @foreach(['Sangat Puas', 'Puas', 'Cukup Puas', 'Kurang', 'Sangat Kurang'] as $option)
+                                                <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-indigo-50 transition-colors">
+                                                    <input type="radio" name="jawaban[{{ $pertanyaan->id }}]" value="{{ $option }}" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" required>
+                                                    <span class="ml-2 text-sm text-gray-700">{{ $option }}</span>
+                                                </label>
+                                            @endforeach
                                         </div>
                                     @endif
                                 </div>
@@ -124,7 +134,7 @@
             </div>
             <div class="flex items-start">
                 <span class="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0 text-indigo-600 font-semibold text-xs">2</span>
-                <p>Ketik jawaban Anda pada kolom yang tersedia</p>
+                <p>Pilih jawaban yang paling sesuai dengan pengalaman Anda</p>
             </div>
             <div class="flex items-start">
                 <span class="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0 text-indigo-600 font-semibold text-xs">3</span>
