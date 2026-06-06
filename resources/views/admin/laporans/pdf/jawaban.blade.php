@@ -184,7 +184,7 @@
             @endphp
             <tr>
                 <td>{{ $index + 1 }}</td>
-                <td>{{ Str::limit($jawaban->pertanyaan->pertanyaan ?? '-', 50) }}</td>
+                <td>{{ $jawaban->pertanyaan->pertanyaan ?? '-' }}</td>
                 <td>{{ $jawaban->responden->nama ?? '-' }}</td>
                 <td>{{ $jawaban->responden->layanan->nama ?? '-' }}</td>
                 <td><span class="badge {{ $badgeClass }}">{{ strtoupper($jawaban->jawaban) }}</span></td>

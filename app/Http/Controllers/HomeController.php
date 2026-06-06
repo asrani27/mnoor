@@ -31,7 +31,33 @@ class HomeController extends Controller
         // Calculate percentages for pie chart
         $totalJawaban = $jawabanStats->sum('total');
         
-        return view('home', compact('totalResponden', 'totalLayanan', 'layananStats', 'jawabanStats', 'totalJawaban'));
+        // Per-layanan statistics for individual charts
+        $layanans = Layanan::withCount('respondens')->get();
+        
+        // Transform untuk view - get answers per layanan
+        $layananCharts = $layanans->map(function($layanan) {
+            // Get answers through pertanyaan relationship
+            $answers = Jawaban::selectRaw('jawabans.jawaban, COUNT(*) as total')
+                ->join('pertanyaans', 'pertanyaans.id', '=', 'jawabans.pertanyaan_id')
+                ->where('pertanyaans.layanan_id', $layanan->id)
+                ->groupBy('jawabans.jawaban')
+                ->get()
+                ->map(function($item) {
+                    return [
+                        'jawaban' => $item->jawaban,
+                        'total' => $item->total
+                    ];
+                });
+            
+            return [
+                'id' => $layanan->id,
+                'nama' => $layanan->nama,
+                'respondens_count' => $layanan->respondens_count,
+                'answers' => $answers
+            ];
+        });
+        
+        return view('home', compact('totalResponden', 'totalLayanan', 'layananStats', 'jawabanStats', 'totalJawaban', 'layananCharts'));
     }
     
     public function createResponden()

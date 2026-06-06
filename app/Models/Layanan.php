@@ -19,6 +19,11 @@ class Layanan extends Model
     {
         return $this->hasMany(Kritik::class);
     }
+    
+    public function pertanyaans(): HasMany
+    {
+        return $this->hasMany(Pertanyaan::class);
+    }
 
     public function wilayahs(): BelongsToMany
     {

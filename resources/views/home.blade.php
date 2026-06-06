@@ -95,45 +95,59 @@
     </div>
 </div>
 
-<!-- Charts Section -->
+<!-- Charts Section - Per Layanan -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-white mb-4">Statistik Survey</h2>
-        <p class="text-white/60 max-w-2xl mx-auto">Visualisasi data survey kepuasan masyarakat berdasarkan layanan dan hasil jawaban.</p>
+        <h2 class="text-3xl font-bold text-white mb-4">Statistik Survey per Layanan</h2>
+        <p class="text-white/60 max-w-2xl mx-auto">Visualisasi data survey kepuasan masyarakat untuk setiap layanan.</p>
     </div>
     
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Bar Chart - Left Column -->
-        <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 md:p-8 border border-white/10">
-            <div class="flex items-center justify-between mb-6">
-                <h3 class="text-xl font-semibold text-white">Responden per Layanan</h3>
-                <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center">
-                    <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                    </svg>
-                </div>
-            </div>
-            <div class="h-80">
-                <canvas id="barChart"></canvas>
-            </div>
-        </div>
+    @foreach($layananCharts as $index => $layanan)
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+            <span class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center mr-3">
+                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+            </span>
+            {{ $layanan['nama'] }}
+            <span class="ml-3 text-sm text-white/50">({{ $layanan['respondens_count'] }} Responden)</span>
+        </h3>
         
-        <!-- Pie Chart - Right Column -->
-        <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 md:p-8 border border-white/10">
-            <div class="flex items-center justify-between mb-6">
-                <h3 class="text-xl font-semibold text-white">Distribusi Jawaban</h3>
-                <div class="w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center">
-                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
-                    </svg>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Bar Chart -->
+            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 md:p-8 border border-white/10">
+                <div class="flex items-center justify-between mb-6">
+                    <h4 class="text-lg font-semibold text-white">Jawaban</h4>
+                    <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="h-64">
+                    <canvas id="barChart{{ $index }}"></canvas>
                 </div>
             </div>
-            <div class="h-80">
-                <canvas id="pieChart"></canvas>
+            
+            <!-- Pie Chart -->
+            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 md:p-8 border border-white/10">
+                <div class="flex items-center justify-between mb-6">
+                    <h4 class="text-lg font-semibold text-white">Distribusi Jawaban</h4>
+                    <div class="w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center">
+                        <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="h-64">
+                    <canvas id="pieChart{{ $index }}"></canvas>
+                </div>
             </div>
         </div>
     </div>
+    @endforeach
 </div>
 
 <!-- Features Section -->
@@ -178,116 +192,146 @@
         pie: ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6']
     };
     
-    // Bar Chart
-    const barCtx = document.getElementById('barChart').getContext('2d');
-    const layananData = @json($layananStats);
-    const barChart = new Chart(barCtx, {
-        type: 'bar',
-        data: {
-            labels: layananData.map(item => item.nama.length > 15 ? item.nama.substring(0, 15) + '...' : item.nama),
-            datasets: [{
-                label: 'Jumlah Responden',
-                data: layananData.map(item => item.respondens_count),
-                backgroundColor: chartColors.blue[0],
-                borderColor: chartColors.blue[1],
-                borderWidth: 1,
-                borderRadius: 8,
-                borderSkipped: false,
-            }]
+    // Data dari controller
+    const layananCharts = @json($layananCharts);
+    
+    // Chart options
+    const barOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                titleColor: '#fff',
+                bodyColor: '#fff',
+                padding: 12,
+                cornerRadius: 8,
+                displayColors: false
+            }
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.1)',
+                    drawBorder: false
                 },
-                tooltip: {
-                    backgroundColor: 'rgba(15, 23, 42, 0.9)',
-                    titleColor: '#fff',
-                    bodyColor: '#fff',
-                    padding: 12,
-                    cornerRadius: 8,
-                    displayColors: false
+                ticks: {
+                    color: 'rgba(255, 255, 255, 0.6)',
+                    font: {
+                        family: 'Inter'
+                    }
                 }
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'rgba(255, 255, 255, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
-                        font: {
-                            family: 'Inter'
-                        }
-                    }
+            x: {
+                grid: {
+                    display: false
                 },
-                x: {
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
-                        font: {
-                            family: 'Inter'
-                        }
+                ticks: {
+                    color: 'rgba(255, 255, 255, 0.6)',
+                    font: {
+                        family: 'Inter'
                     }
                 }
             }
         }
-    });
+    };
     
-    // Pie Chart
-    const pieCtx = document.getElementById('pieChart').getContext('2d');
-    const jawabanData = @json($jawabanStats);
-    const totalJawaban = {{ $totalJawaban }};
-    const pieChart = new Chart(pieCtx, {
-        type: 'doughnut',
-        data: {
-            labels: jawabanData.map(item => item.jawaban),
-            datasets: [{
-                data: jawabanData.map(item => item.total),
-                backgroundColor: chartColors.pie,
-                borderWidth: 0,
-                hoverOffset: 10
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            cutout: '60%',
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        color: 'rgba(255, 255, 255, 0.8)',
-                        padding: 20,
-                        usePointStyle: true,
-                        pointStyle: 'circle',
-                        font: {
-                            family: 'Inter',
-                            size: 12
-                        }
+    const pieOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '60%',
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    padding: 20,
+                    usePointStyle: true,
+                    pointStyle: 'circle',
+                    font: {
+                        family: 'Inter',
+                        size: 12
                     }
+                }
+            },
+            tooltip: {
+                backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                titleColor: '#fff',
+                bodyColor: '#fff',
+                padding: 12,
+                cornerRadius: 8
+            }
+        }
+    };
+    
+    // Create charts untuk setiap layanan
+    layananCharts.forEach((layanan, index) => {
+        // Bar Chart
+        const barCanvas = document.getElementById('barChart' + index);
+        if (barCanvas) {
+            const answers = layanan.answers || [];
+            const labels = answers.length > 0 ? answers.map(a => a.jawaban) : ['Tidak Ada Data'];
+            const data = answers.length > 0 ? answers.map(a => a.total) : [0];
+            const totalLayanan = data.reduce((a, b) => a + b, 0);
+            
+            new Chart(barCanvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Jumlah Jawaban',
+                        data: data,
+                        backgroundColor: chartColors.blue[0],
+                        borderColor: chartColors.blue[1],
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        borderSkipped: false,
+                    }]
                 },
-                tooltip: {
-                    backgroundColor: 'rgba(15, 23, 42, 0.9)',
-                    titleColor: '#fff',
-                    bodyColor: '#fff',
-                    padding: 12,
-                    cornerRadius: 8,
-                    callbacks: {
-                        label: function(context) {
-                            const value = context.raw;
-                            const percentage = totalJawaban > 0 ? ((value / totalJawaban) * 100).toFixed(1) : 0;
-                            return `${context.label}: ${value} (${percentage}%)`;
+                options: barOptions
+            });
+        }
+        
+        // Pie Chart
+        const pieCanvas = document.getElementById('pieChart' + index);
+        if (pieCanvas) {
+            const answers = layanan.answers || [];
+            const labels = answers.length > 0 ? answers.map(a => a.jawaban) : ['Tidak Ada Data'];
+            const data = answers.length > 0 ? answers.map(a => a.total) : [1];
+            const totalLayanan = data.reduce((a, b) => a + b, 0);
+            
+            new Chart(pieCanvas.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: chartColors.pie,
+                        borderWidth: 0,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    ...pieOptions,
+                    plugins: {
+                        ...pieOptions.plugins,
+                        tooltip: {
+                            ...pieOptions.plugins.tooltip,
+                            callbacks: {
+                                label: function(context) {
+                                    const value = context.raw;
+                                    const percentage = totalLayanan > 0 ? ((value / totalLayanan) * 100).toFixed(1) : 0;
+                                    return `${context.label}: ${value} (${percentage}%)`;
+                                }
+                            }
                         }
                     }
                 }
-            }
+            });
         }
     });
 </script>
