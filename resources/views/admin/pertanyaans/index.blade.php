@@ -39,7 +39,7 @@
             <tbody class="bg-white divide-y divide-gray-200">
                 @forelse($pertanyaans as $pertanyaan)
                 <tr class="hover:bg-gray-50">
-                    <td class="px-6 py-4 text-sm text-gray-500">{{ $loop->iteration }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">{{ ($pertanyaans->currentPage() - 1) * $pertanyaans->perPage() + $loop->iteration }}</td>
                     <td class="px-6 py-4 text-sm text-gray-900">{{ Str::limit($pertanyaan->pertanyaan, 80) }}</td>
                     <td class="px-6 py-4 text-sm text-gray-900">{{ $pertanyaan->layanan->nama ?? '-' }}</td>
                     <td class="px-6 py-4 text-sm text-gray-500">{{ $pertanyaan->created_at->format('M d, Y') }}</td>
