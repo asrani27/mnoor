@@ -31,6 +31,7 @@
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase">#</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase">Pertanyaan</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase">Layanan</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase">Created</th>
                     <th class="px-6 py-3 text-right text-xs font-medium text-white uppercase">Actions</th>
                 </tr>
@@ -40,6 +41,7 @@
                 <tr class="hover:bg-gray-50">
                     <td class="px-6 py-4 text-sm text-gray-500">{{ $loop->iteration }}</td>
                     <td class="px-6 py-4 text-sm text-gray-900">{{ Str::limit($pertanyaan->pertanyaan, 80) }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">{{ $pertanyaan->layanan->nama ?? '-' }}</td>
                     <td class="px-6 py-4 text-sm text-gray-500">{{ $pertanyaan->created_at->format('M d, Y') }}</td>
                     <td class="px-6 py-4 text-right">
                         <div class="flex justify-end space-x-2">
@@ -49,7 +51,7 @@
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="4" class="px-6 py-12 text-center text-gray-500">No pertanyaan found.</td></tr>
+                <tr><td colspan="5" class="px-6 py-12 text-center text-gray-500">No pertanyaan found.</td></tr>
                 @endforelse
             </tbody>
         </table>

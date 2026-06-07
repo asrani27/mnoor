@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pertanyaan;
+use App\Models\Layanan;
 use Illuminate\Http\Request;
 
 class PertanyaanController extends Controller
@@ -21,13 +22,15 @@ class PertanyaanController extends Controller
 
     public function create()
     {
-        return view('admin.pertanyaans.create');
+        $layanans = Layanan::orderBy('nama')->get();
+        return view('admin.pertanyaans.create', compact('layanans'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'pertanyaan' => 'required|string',
+            'layanan_id' => 'required|exists:layanans,id',
         ]);
 
         Pertanyaan::create($validated);
@@ -38,13 +41,15 @@ class PertanyaanController extends Controller
 
     public function edit(Pertanyaan $pertanyaan)
     {
-        return view('admin.pertanyaans.edit', compact('pertanyaan'));
+        $layanans = Layanan::orderBy('nama')->get();
+        return view('admin.pertanyaans.edit', compact('pertanyaan', 'layanans'));
     }
 
     public function update(Request $request, Pertanyaan $pertanyaan)
     {
         $validated = $request->validate([
             'pertanyaan' => 'required|string',
+            'layanan_id' => 'required|exists:layanans,id',
         ]);
 
         $pertanyaan->update($validated);
