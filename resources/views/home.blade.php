@@ -111,7 +111,6 @@
                 </svg>
             </span>
             {{ $layanan['nama'] }}
-            <span class="ml-3 text-sm text-white/50">({{ $layanan['respondens_count'] }} Responden)</span>
         </h3>
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
